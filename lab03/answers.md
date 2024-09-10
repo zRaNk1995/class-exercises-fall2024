@@ -1,78 +1,47 @@
-# Lab 3 Answers
+Lab_03 Answers
+1.1
+drwxr-xr-x 3 zrank zrank 4096 Sep  5 10:34 .
+drwxr-xr-x 6 zrank zrank 4096 Sep  5 10:29 ..
+drwxr-xr-x 7 zrank zrank 4096 Sep  5 10:34 .git
+-rw-r--r-- 1 zrank zrank    8 Sep  5 10:32 README.md
 
-## Part 1: Git
+1.2 
+On branch master
 
-### 1.1. List the contents of the lab03-exercises repo immediately after initialization
-```
-# paste code here
+No commits yet
 
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        README.md
 
-```
+nothing added to commit but untracked files present (use "git add" to track)
 
-### 1.2. Paste the output of your `git status` command
-```
-# paste code here
+1.3
+[master (root-commit) 0b93ce1] add README.md to the repository
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
 
-
-```
-
-### 1.3. Paste the output of the state of your repository after committing your README.md file
-```
-# paste code here
-
-
-```
-
-### 1.4. Copy your `git log` output
-```
-# paste code here
-
-
-```
-
-### 1.5. Copy your `git diff` output
-```
-# paste code here
+1.4
+commit 0b93ce1a2159054cb8f361bd9c59a360179eeea7 (HEAD -> master)
+Author: Zach <zrank@unca.edu>
+Date:   Thu Sep 5 10:38:35 2024 -0400
 
 
-```
 
+1.5 
+diff --git a/README.md b/README.md
+index 6cb69d9..62ab950 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,3 @@
+ #Readme
++Find All Duplicates
++Write a function (or static method in the case of Java) that accepts a list of integers and returns a list of only those integers that appear more than once.
+1.6 6 commands
 
-### 1.6. Reflection
+ 3 types of merge
+Default-  This option creates a new commit in the base branch that includes all changes from the feature branch
+Squash - This option combines all the commits from the feature branch into a single commit before merging it into the base branch. 
+Rebase- This option re-applies each commit from the feature branch onto the base branch.
 
-We've learned 6 git subcommands now. Describe each of them in your own words in the section below:
-
-* git init
-* git status 
-* git add 
-* git commit 
-* git log 
-* git diff 
-
-
-### 1.7. Practice: Find All Duplicates (Java)
-Make sure you implement the `FindDuplicates.java` class as specified in the instructions (with the nested loops implementation).
-
-## Part 2: GitHub
-
-### 2.1. Practice: Find All Duplicates (Python)
-Make sure you implement the `find_duplicates.py` file as specified in the instructions (with the nested loops implementation).
-
-
-## Part 3: Branching
-
-### 3.1. Implement the More Efficient Version of the "Find Duplicates" problem
-Implement the more efficient Version of the "Find Duplicates" problem using a dictionary (or hashmap) data structure instead of nested loops. You may do this in either your Python file or in the Java file that you’ve already made. Do this by adding a second function/method to your Java/Python file with a slightly different name.
-
-
-### 3.2. Link to Repo
-Please make sure that the new repo that you made today on GitHub is public, and paste a link to it below.
-
-```bash
-# paste your new repo link here...
-
-```
-
-### 3.3. What do the three "Merge pull request" options mean? 
-Describe each of them in your own words.
 
