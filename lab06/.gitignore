@@ -1,0 +1,9 @@
+# Note: I'm excluding these files just for this lab,
+# since you guys will have different python and node.js versions
+__pycache__
+poetry.lock
+.pytest_cache
+pyproject.toml
+package-lock.json
+solutions
+node_modules
