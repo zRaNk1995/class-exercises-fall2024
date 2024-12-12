@@ -35,7 +35,23 @@ async def startup():
 # Task 1
 @app.get("/api/departments/", response_model=List[str])
 async def get_department_codes(db: AsyncSession = Depends(get_db)):
-    # replace with your code...
+    from fastapi import FastAPI, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from typing import List
+
+from database import get_db
+from models import Course
+
+app = FastAPI()
+
+@app.get("/api/departments", response_model=List[str])
+async def get_departments(db: AsyncSession = Depends(get_db)):
+    query = select(Course.department).distinct()
+    result = await db.execute(query)
+    departments = [row[0] for row in result.fetchall()]
+    return departments
+
     return []
 
 
@@ -45,7 +61,26 @@ async def get_department_codes(db: AsyncSession = Depends(get_db)):
 async def get_users_by_username(
     username: str, db: AsyncSession = Depends(get_db)
 ):
-    # replace with your code...
+    from fastapi import HTTPException
+from models import User
+
+@app.get("/api/users/{username}")
+async def get_user(username: str, db: AsyncSession = Depends(get_db)):
+    query = select(User).where(User.username == username)
+    result = await db.execute(query)
+    user = result.scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return {
+        "id": user.id,
+        "username": user.username,
+        "email": user.email,
+        "first_name": user.first_name,
+        "last_name": user.last_name,
+    }
+
     return {}
 
 
@@ -56,8 +91,7 @@ async def get_courses(
     instructor: str = Query(None),
     department: str = Query(None),
     hours: int = Query(None),
-    db: AsyncSession = Depends(get_db),
-):
+    db: AsyncSession = Depends(get_db),):
 
     # base query to "courses" table that also asks SQLAlchemy
     # to join to the "instructors" and "locations" table.

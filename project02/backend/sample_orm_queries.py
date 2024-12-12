@@ -5,11 +5,68 @@ from sqlalchemy.orm import joinedload, selectinload
 
 from db import AsyncSessionLocal
 from models import Course, Schedule
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
+
+
 
 """
 Documentation:
 https://docs.sqlalchemy.org/en/20/orm/queryguide/select.html#selecting-orm-entities-and-attributes
 """
+
+
+
+
+
+
+async def print_usernames(db: AsyncSession):
+    # Query all users to get their usernames
+    query = select(User.username)
+    result = await db.execute(query)
+    usernames = result.scalars().all()
+    
+    # Print each username
+    for username in usernames:
+        print(username)
+
+
+
+
+
+
+
+
+
+
+async def print_unique_departments(db: AsyncSession):
+    # Query distinct departments from the Course model
+    query = select(Course.department).distinct()
+    result = await db.execute(query)
+    departments = result.scalars().all()
+    
+    # Print each department
+    for department in departments:
+        print(department)
+
+async def print_open_cs_courses(db: AsyncSession):
+    # Query CSCI department courses that are open
+    query = select(Course.crn, Course.title).filter(Course.department == "CSCI", Course.is_open == True)
+    result = await db.execute(query)
+    open_courses = result.fetchall()
+    
+    # Print the CRN and title for each open course
+    for crn, title in open_courses:
+        print(f"CRN: {crn}, Title: {title}")
+
+
+
+
+
+
+
+
 
 
 async def show_courses(db: AsyncSessionLocal):
